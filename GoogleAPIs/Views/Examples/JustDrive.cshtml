@@ -1,0 +1,35 @@
+﻿@model IList<Google.Apis.Drive.v2.Data.File>
+@{
+    ViewBag.Title = "Just Drive";
+}
+
+<h2>My Files</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+                Title
+            </td>
+            <td>
+                Last Modified Date
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var file in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@file.AlternateLink">
+                        <img src="@file.IconLink" style="margin-right: 2px" />
+                        @file.Title
+                    </a>
+                </td>
+                <td>
+                    @string.Format("{0}{1}{2}", file.ModifiedDate.Value.ToShortDateString(), string.IsNullOrEmpty(file.LastModifyingUserName) ? string.Empty : " by " , file.LastModifyingUserName)                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
