@@ -1,0 +1,29 @@
+﻿@model GoogleAPIs.ViewModels.MirrorTimeline
+@{
+    ViewBag.Title = "Mirror Timeline";
+}
+
+@using (Html.BeginForm("MirrorTimeline", "Examples", FormMethod.Post, new { role = "form", @class = "col-md-8 col-md-offset-2" }))
+{
+    <div class="row">
+        <div class="col-md-3">
+            <label class="pull-right" for="Message">Message</label>
+        </div>
+        <div class="col-md-5">
+            @Html.TextAreaFor(m => m.Message, new { @class = "form-control", rows = 4, style = "width: 100%" })
+        </div>
+        <div class="col-md-4">
+            <input type="submit" value="Add Card" class="btn btn-primary" />
+        </div>
+    </div>
+    if(Model.Location != null)
+    { 
+    <div class="row" style="margin-top: 15px;">
+        <h4>Last Known Location</h4>    
+        <iframe width="600"
+                height="450"
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?key=@System.Web.Configuration.WebConfigurationManager.AppSettings["ApiKey"]&q=@Model.Location.Latitude,@Model.Location.Longitude&zoom=18"></iframe>
+    </div>
+    }
+}

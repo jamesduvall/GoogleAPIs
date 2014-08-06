@@ -1,0 +1,36 @@
+﻿@model IEnumerable<GoogleAPIs.ViewModels.YouTubeChannel>
+@{
+    ViewBag.Title = "YouTube Uploads";
+}
+
+<div class="panel-group" id="accordion">
+    @foreach (var channel in Model)
+    {
+        <h2>@channel.ChannelName</h2>
+
+        foreach (var video in channel.Videos)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse_@video.VideoId">
+                            @video.VideoName
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse_@video.VideoId" class="panel-collapse collapse">
+                    <div class="panel-body">                           
+                        <iframe id="ytplayer" type="text/html" width="640" height="390"
+                                src="http://www.youtube.com/embed/@video.VideoId"
+                                frameborder="0"></iframe>
+                        <div class="row" style="margin-top: 10px; margin-left: 0;">
+                            <b>Published on @video.PublishedAt.GetValueOrDefault().ToShortDateString()</b>
+                            <br />
+                            @video.Description
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

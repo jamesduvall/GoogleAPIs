@@ -1,0 +1,288 @@
+﻿@{
+	Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>C# and Google API Libraries: Getting Started</title>
+	<meta name="description" content="C#, sometimes considered the domain of .Net and Microsoft is a fantastic language in it's own right. When combined with the power of the latest C# Google Client API's library, you can begin to quickly leverage Google services within your existing platform.">
+	<meta name="author" content="James Duvall">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="~/Content/revealjs/reveal.min.css">    
+	<link rel="stylesheet" href="~/Content/revealjs/theme/sky.css" id="theme">
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="~/Content/revealjs/zenburn.css">
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = '../Content/revealjs/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+	</script>
+	<!--[if lt IE 9]>
+	<script src="../scripts/html5shiv.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>C# and Google API Libraries</h1>
+				<h2>Getting Started</h2>
+				<p>
+					<small>Created by James Duvall / <a href="http://twitter.com/jamesduvall">&#64;JamesDuvall</a> / <a href="http://google.com/+JamesDuvallIV">+JamesDuvallIV</a></small>
+				</p>
+			</section>
+			<section>
+				<h2>Objectives</h2>
+				<p>
+                     <ul>
+                         <li>How to begin?</li>
+                         <li>Autherization</li>
+                         <li>Google+</li>
+                         <li>Calendar</li>
+                         <li>Drive</li>
+                         <li>Glass</li>
+                     </ul>
+				</p>
+			</section>
+            <section>
+                <h2>How to begin?</h2>
+                <p>
+                    Go to <a href="https://developers.google.com/api-client-library/dotnet/get_started">Google APIs Client Library for .NET</a> and read everything.
+                </p>
+            </section>
+            <section>
+                <h2>The end!</h2>
+            </section>
+            <section>
+                <p>
+                    <ol>
+                        <li>
+                            If you don't have a google account, create one.
+                        </li>
+                        <li>
+                            Visit console.developers.google.com/project to create a project.
+                        </li>
+                        <li>
+                            Activate the desired APIs.
+                        </li>
+                        <li>
+                            Use Nuget to download API library.
+                        </li>
+                    </ol>
+                </p>
+            </section>
+            <section>
+                <h2>Hmmmm Nuget</h2>
+                <p>
+                    <h4>What is NuGet?</h4>
+                    <blockquote cite="https://www.nuget.org/">
+                        NuGet is the package manager for the Microsoft development platform including .NET. The NuGet client tools provide the ability to produce and consume packages. The NuGet Gallery is the central package repository used by all package authors and consumers.
+                    </blockquote>
+                </p>
+                <p style="text-align: right;">
+                    - <a href="https://www.nuget.org/">Nuget.org</a>
+                </p>
+            </section>
+            <section>
+                <h2>Getting Authorized</h2>
+                <p>
+                    API Keys vs OAuth 2.0
+                </p>
+            </section>
+            <section>
+                <h2>API Keys</h2>
+                <p>
+                    API Keys provide access to public information.
+                    <ul>
+                        <li>Google owned data (i.e. Maps, Translate)</li>
+                        <li>Data that the owner has specified as public (i.e. calendar, blog).</li>
+                    </ul>
+                    <br />
+                    Begin by generating a key from the Developer Console.
+                    <a href="http://imgur.com/ZKOHSvv" title="Google Developers Console"><img src="http://i.imgur.com/ZKOHSvv.png" title="Hosted by imgur.com" alt="Google Developers Console" /></a>                    
+                </p>
+            </section>
+            <section>
+                <h2>OAuth 2.0</h2>
+                <p>
+                    OAuth 2.0 is used to gain access to private information.
+                    <a href="http://imgur.com/ReEOcv7" title="Google Developers Console"><img src="http://i.imgur.com/ReEOcv7.png" title="Hosted by imgur.com" alt="Google Developers Console" /></a>                                        
+                </p>
+            </section>
+            <section>
+                <h2>Getting Started with OAuth 2.0 for MVC</h2>
+                <p>
+                    Nuget Package: Google.Apis.Auth.MVC
+                    <br />
+                    <ol>
+                        <li>Create a new Client ID for Web Application</li>
+                        <li>Create a class inheriting from AppFlowMetadata</li>
+                        <li>Create a controller inheriting from AuthCallbackController</li>                        
+                    </ol>
+                </p>
+                Example Auth Call:
+                <pre><code>var result = await new AuthorizationCodeMvcApp(this, new AppFlowMetadata()).AuthorizeAsync(cancellationToken);</code></pre>
+            </section>            
+            <section>
+                <h2>Scope</h2>
+                <p>
+                    Grants access to specific user data. <br />
+                    Informs the user what access is being granted. <br />
+                    <img src="http://i.imgur.com/R0yqCXQ.png" alt="OAuth Permission Screen" /></p>
+            </section>
+            <section>
+                <h2>Revoking Access</h2>
+                <img src="http://i.imgur.com/j7C3QdL.png" alt="Account Permissions" />
+                <p>
+                    <a href="https://security.google.com/settings/security/permissions?pli=1">Account Permissions</a>
+                </p>
+            </section>
+            <section>
+                <h2>HIDE YOUR S*!#</h2>
+                <p>
+                    Do not share your Client Id, Client Secret, and or API Key!  You can be impersonated.
+                    <br />
+                    <p class="fragment show">
+                        <img src="http://www.oafe.net/blog/wp-content/uploads/2011/12/t2b.jpg" alt="Terminator Twins" />
+                    </p>
+                </p>
+            </section>
+            <section>
+                <h2>Discovery Service zzzzzzzzzz</h2>
+                <p>
+                    Authentication: API Key
+                    <br />
+                    Nuget Package: Google.Apis.discovery
+                    <br />
+                    <a href="/Examples/DiscoveryService">Discovery Service</a>
+                </p>
+            </section>
+            <section>
+                <h1>ITube</h1><h3>YouTube</h3><h2>WeAllTube</h2><h4>ForYouTubes</h4>
+                <p>
+                    Authentication: OAuth2.0 
+                    <br />
+                    Nuget Package: Google.Apis.youtube
+                    <br />
+                    <a href="/Examples/YouTubeViewUploads">YouTube View Uploads</a>
+                </p>
+            </section>
+            <section>
+                <h2>Mirror and You</h2>
+                <p>
+                    Authentication: OAuth2.0 
+                    <br />
+                    Nuget Package: Google.Apis.mirror
+                    <br />
+                    Be sure and visit <a href="https://developers.google.com/glass/tools-downloads/playground">Google Mirror API Playground</a>.  You'll need to use this to test.
+                    <br />                    
+                    <a href="/Examples/MirrorTimeline">Mirror Timeline</a>                    
+                </p>
+            </section>
+            <section>
+                <h2>Drive</h2>                
+                <img src="http://i.imgur.com/Nk4QR.jpg" alt="Drive" />                
+            </section>
+            <section>
+                <h2>Drive</h2>
+                <p>
+                    Authentication: OAuth2.0
+                    <br />
+                    Nuget Package: Google.Apis.Drive
+                    <br />
+                    <a href="/Examples/JustDrive">Just Drive</a>
+                </p>
+            </section>
+            <section>
+                <h2>Orkut</h2>
+                <p>
+                    Authentication: Who knows?
+                    <br />
+                    Nuget Package: No seriously does anyone really care?
+                    <br />
+                    <p class="fragment show">
+                        <img src="http://i.imgur.com/tRtViF7.jpg" alt="Waste Land">
+                    </p>
+                </p>
+            </section>
+            <section>
+                <h2>FAQs</h2>
+                <p>
+                    <ul>
+                        <li>
+                            <b>When should I use an API Key / OAuth 2.0?</b>
+                            <br />
+                            <i>It's based on the API you're calling. OAuth 2.0 can be used for any API. API Key can only be used for those APIs that don't access non public data.</i>
+                        </li>
+                        <li>
+                            <b>Are there limits to the number of calls per API?</b>
+                            <br />
+                            <i>For sure! Check the API section on the Developer Console for an exact number.</i>
+                        </li>
+                    </ul>
+                </p>
+            </section>
+			<section>
+				<h2>Resources</h2>
+				<ul>
+                    <li><a href="https://console.developers.google.com">Google Developers Console</a></li>
+					<li><a href="https://developers.google.com/api-client-library/dotnet/get_started">Google APIs Client Library for .NET - Getting Started</a></li>
+                    <li><a href="https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth">OAuth 2.0 .NET Example</a></li>
+                    <li><a href="https://developers.google.com/glass/tools-downloads/playground">Mirror Playground</a></li>
+				</ul>
+			</section>            
+            <section>
+                <h2>The End of all things</h2>
+                <p>
+                    <img src="http://i.imgur.com/g98DNpD.jpg" title="Duvall" />
+                    <br />
+                    +JamesDuvallIV
+                    <br />
+                    &#64;JamesDuvall
+                    <br />
+                    James.Duvall@StickmanVentures.com
+                </p>
+            </section>
+		</div>
+	</div>
+	<script src="~/Scripts/head.min.js"></script>
+	<script src="~/Scripts/reveal.min.js"></script>
+	<script>
+
+		// Full list of configuration options available here:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Parallax scrolling
+			// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+			// parallaxBackgroundSize: '2100px 900px',
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: '../scripts/classList.js', condition: function () { return !document.body.classList; } },
+				{ src: '../scripts/plugins/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: '../scripts/plugins/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: '../scripts/plugins/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+				{ src: '../scripts/plugins/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+				{ src: '../scripts/plugins/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+</body>
+</html>

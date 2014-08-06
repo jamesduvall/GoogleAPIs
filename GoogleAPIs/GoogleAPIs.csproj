@@ -39,11 +39,61 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Google.Apis">
+      <HintPath>..\packages\Google.Apis.1.8.1\lib\net40\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth">
+      <HintPath>..\packages\Google.Apis.Auth.1.8.2\lib\net40\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.Mvc4">
+      <HintPath>..\packages\Google.Apis.Auth.Mvc.1.8.2\lib\net40\Google.Apis.Auth.Mvc4.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices">
+      <HintPath>..\packages\Google.Apis.Auth.1.8.2\lib\net40\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.8.2.23761, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Google.Apis.Core.1.8.2\lib\portable-net4+sl4+wp71+win8\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Discovery.v1">
+      <HintPath>..\packages\Google.Apis.Discovery.v1.1.8.1.450\lib\portable-net4+sl4+wp71+win8\Google.Apis.Discovery.v1.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Drive.v2">
+      <HintPath>..\packages\Google.Apis.Drive.v2.1.8.1.1350\lib\portable-net4+sl4+wp71+win8\Google.Apis.Drive.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Mirror.v1">
+      <HintPath>..\packages\Google.Apis.Mirror.v1.1.8.1.580\lib\portable-net4+sl4+wp71+win8\Google.Apis.Mirror.v1.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Oauth2.v2">
+      <HintPath>..\packages\Google.Apis.Oauth2.v2.1.8.1.750\lib\portable-net4+sl4+wp71+win8\Google.Apis.Oauth2.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices">
+      <HintPath>..\packages\Google.Apis.1.8.1\lib\net40\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.YouTube.v3">
+      <HintPath>..\packages\Google.Apis.YouTube.v3.1.8.1.1130\lib\portable-net4+sl4+wp71+win8\Google.Apis.YouTube.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\net45\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\net45\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -102,6 +152,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Zlib.Portable">
+      <HintPath>..\packages\Zlib.Portable.1.9.2\lib\portable-net4+sl4+wp71+win8\Zlib.Portable.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -112,22 +165,76 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Components\AppFlowMetadata.cs" />
+    <Compile Include="Controllers\AuthCallbackController.cs" />
+    <Compile Include="Controllers\BaseExamplesController.cs" />
+    <Compile Include="Controllers\ExamplesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\MirrorTimeline.cs" />
+    <Compile Include="ViewModels\YouTubeChannel.cs" />
+    <Compile Include="ViewModels\YouTubeVideo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\img\duvallphoto.jpg" />
+    <Content Include="Content\lib\font\league_gothic-webfont.svg" />
+    <Content Include="Content\revealjs\print\paper.css" />
+    <Content Include="Content\revealjs\print\pdf.css" />
+    <Content Include="Content\revealjs\reveal.custom.min.css">
+      <DependentUpon>reveal.custom.css</DependentUpon>
+    </Content>
+    <Content Include="Content\revealjs\reveal.min.css" />
+    <Content Include="Content\revealjs\theme\beige.css" />
+    <Content Include="Content\revealjs\theme\blood.css" />
+    <Content Include="Content\revealjs\theme\default.css" />
+    <Content Include="Content\revealjs\theme\moon.css" />
+    <Content Include="Content\revealjs\theme\night.css" />
+    <Content Include="Content\revealjs\theme\serif.css" />
+    <Content Include="Content\revealjs\theme\simple.css" />
+    <Content Include="Content\revealjs\theme\sky.css" />
+    <Content Include="Content\revealjs\theme\solarized.css" />
+    <Content Include="Content\revealjs\zenburn.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\revealjs\theme\README.md" />
+    <Content Include="Content\revealjs\theme\source\beige.scss" />
+    <Content Include="Content\revealjs\theme\source\blood.scss" />
+    <Content Include="Content\revealjs\theme\source\default.scss" />
+    <Content Include="Content\revealjs\theme\source\moon.scss" />
+    <Content Include="Content\revealjs\theme\source\night.scss" />
+    <Content Include="Content\revealjs\theme\source\serif.scss" />
+    <Content Include="Content\revealjs\theme\source\simple.scss" />
+    <Content Include="Content\revealjs\theme\source\sky.scss" />
+    <Content Include="Content\revealjs\theme\source\solarized.scss" />
+    <Content Include="Content\revealjs\theme\template\mixins.scss" />
+    <Content Include="Content\revealjs\theme\template\settings.scss" />
+    <Content Include="Content\revealjs\theme\template\theme.scss" />
+    <Content Include="Content\lib\font\league_gothic-webfont.eot" />
+    <Content Include="Content\lib\font\league_gothic-webfont.ttf" />
+    <Content Include="Content\lib\font\league_gothic-webfont.woff" />
+    <Content Include="Content\lib\font\league_gothic_license" />
+    <Content Include="Content\revealjs\reveal.custom.css" />
+    <Content Include="AppSettings\dev.config" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\classList.js" />
+    <Content Include="Scripts\head.min.js" />
+    <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -136,8 +243,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\plugins\highlight\highlight.js" />
+    <Content Include="Scripts\plugins\markdown\example.html" />
+    <Content Include="Scripts\plugins\markdown\markdown.js" />
+    <Content Include="Scripts\plugins\markdown\marked.js" />
+    <Content Include="Scripts\plugins\notes\notes.html" />
+    <Content Include="Scripts\plugins\notes\notes.js" />
+    <Content Include="Scripts\plugins\zoom-js\zoom.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\reveal.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -150,14 +265,18 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Slides.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\plugins\markdown\example.md" />
+    <Content Include="Views\Examples\DiscoveryService.cshtml" />
+    <Content Include="Views\Examples\YouTubeViewUploads.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Examples\MirrorTimeline.cshtml" />
+    <Content Include="Views\Examples\JustDrive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\AuthCallback\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -194,6 +313,11 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

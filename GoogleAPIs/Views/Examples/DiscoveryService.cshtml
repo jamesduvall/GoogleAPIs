@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Discovery Service";
+}
+    
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Version</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td><img src="@item.Icons.X32" alt="Image representing API" /></td>                
+                <td><a href="@item.DocumentationLink">@item.Title</a></td>
+                <td>@item.Version</td>
+                <td>@item.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
