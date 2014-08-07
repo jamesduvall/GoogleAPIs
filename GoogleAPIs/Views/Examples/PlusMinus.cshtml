@@ -1,0 +1,28 @@
+﻿@model Google.Apis.Plus.v1.Data.ActivityFeed
+
+@{
+    ViewBag.Title = "Plus Minus";
+}
+
+<form action="" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <input type="text" class="form-control col-md-8" name="searchString" id="searchString" placeholder="Search for activities..." /><input type="submit" value="Search" class="btn btn-success" style="margin-left: 5px" />
+    </div>
+</form>
+
+@if (Model != null && Model.Items.Count() > 0)
+{ 
+<h2>Results</h2>
+
+    foreach (var item in Model.Items)
+    {
+        <div class="well-lg">
+            <h3>@item.Title</h3>
+            <p>@Server.HtmlDecode(item.Annotation)</p>
+        </div>
+    }
+
+}
+
+
+

@@ -70,6 +70,9 @@
     <Reference Include="Google.Apis.PlatformServices">
       <HintPath>..\packages\Google.Apis.1.8.1\lib\net40\Google.Apis.PlatformServices.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Apis.Plus.v1">
+      <HintPath>..\packages\Google.Apis.Plus.v1.1.8.1.1430\lib\portable-net4+sl4+wp71+win8\Google.Apis.Plus.v1.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Apis.YouTube.v3">
       <HintPath>..\packages\Google.Apis.YouTube.v3.1.8.1.1130\lib\portable-net4+sl4+wp71+win8\Google.Apis.YouTube.v3.dll</HintPath>
     </Reference>
@@ -273,6 +276,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Examples\MirrorTimeline.cshtml" />
     <Content Include="Views\Examples\JustDrive.cshtml" />
+    <Content Include="Views\Examples\PlusMinus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

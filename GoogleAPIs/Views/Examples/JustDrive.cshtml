@@ -3,7 +3,10 @@
     ViewBag.Title = "Just Drive";
 }
 
-<h2>My Files</h2>
+<h2>
+    My Files 
+    <button class="btn btn-success pull-right" data-toggle="modal" data-target="#FileUploadModal">Upload File</button>
+</h2>
 
 <table class="table">
     <thead>
@@ -33,3 +36,43 @@
         }
     </tbody>
 </table>
+
+<form action="UploadFile" method="post" enctype="multipart/form-data">
+    <div id="FileUploadModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Upload File</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <input type="file" name="uploadedFile" id="uploadedFile" />
+                        <br />
+                    <p id="fileUploadError" class="bg-primary" style="display: none; color:red;">Please select a file before uploading.</p>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" id="UploadFileButton" class="btn btn-primary" value="Upload" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+ @section scripts{
+<script type="text/javascript">    
+    $("#UploadFileButton").click(function () {
+        var file = $("#uploadedFile").val();
+
+        if (file === "") {
+            $("#fileUploadError").slideDown();
+            return false;
+        }
+        else {
+            $("#fileUploadError").slideUp();            
+        }
+    });
+</script>
+}

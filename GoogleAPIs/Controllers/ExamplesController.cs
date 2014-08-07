@@ -7,6 +7,7 @@ using Google.Apis.Drive.v2.Data;
 using Google.Apis.Mirror.v1;
 using Google.Apis.Mirror.v1.Data;
 using Google.Apis.Oauth2.v2;
+using Google.Apis.Plus.v1;
 using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
 using GoogleAPIs.Components;
@@ -100,7 +101,7 @@ namespace GoogleAPIs.Controllers
 
             if (result.Credential != null)
             {
-                Session["GlassCredentials"] = result.Credential;
+                Session["UserCredentials"] = result.Credential;
 
                 var mirrorTimeLine = new MirrorTimeline()
                 {
@@ -118,7 +119,7 @@ namespace GoogleAPIs.Controllers
         [HttpPost]
         public async Task<ActionResult> MirrorTimeline(MirrorTimeline mirrorTimeline)
         {
-            var userCredentials = (Google.Apis.Auth.OAuth2.UserCredential)Session["GlassCredentials"];
+            var userCredentials = (Google.Apis.Auth.OAuth2.UserCredential)Session["UserCredentials"];
             
             if(userCredentials != null)
             {
@@ -167,6 +168,8 @@ namespace GoogleAPIs.Controllers
 
             if (result.Credential != null)
             {
+                Session["UserCredentials"] = result.Credential;
+
                 var driveService = new DriveService(new BaseClientService.Initializer 
                 { 
                     HttpClientInitializer = result.Credential,
@@ -206,6 +209,50 @@ namespace GoogleAPIs.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<ActionResult> UploadFile(HttpPostedFileBase uploadedFile)
+        {
+            var userCredentials = (Google.Apis.Auth.OAuth2.UserCredential)Session["UserCredentials"];
+
+            if (userCredentials != null)
+            {
+                var driveService = new DriveService(new BaseClientService.Initializer
+                {
+                    HttpClientInitializer = userCredentials,
+                    ApplicationName = this.ApplicationName
+                });
+
+                File file = new File();
+                file.Title = uploadedFile.FileName;
+                file.MimeType = uploadedFile.ContentType;
+
+                var request = driveService.Files.Insert(file, uploadedFile.InputStream, uploadedFile.ContentType);
+                await request.UploadAsync();                
+            }
+
+            return RedirectToAction("JustDrive");
+        }
+
+        public ActionResult PlusMinus()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> PlusMinus(string searchString)
+        {
+            var service = new PlusService(new BaseClientService.Initializer
+            {
+                ApplicationName = this.ApplicationName,
+                ApiKey = this.ApiKey,
+            });
+
+            var request = service.Activities.Search(searchString).ExecuteAsync();
+
+            var activityFeed = await request;
+            
+            return View(activityFeed);
+        }
        
         private async Task<Location> GetMirrorLocationAsync(UserCredential userCredentials)
         {
